@@ -8,7 +8,7 @@ module.exports = {
   entry: "./client/singleItemPage.jsx",
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: 'singleItemPage.js',
+    filename: 'bundle.js',
     publicPath: "/public/",
   },
   module: {
