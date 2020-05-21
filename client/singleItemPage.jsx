@@ -5,28 +5,27 @@ import MainImageContainer from './components/mainImageContainer.jsx';
 import ModalContainer from './components/modalContainer.jsx';
 import style from './css/style.css';
 
-class SingleItemPage extends React.Component{
-  constructor(props){
+class SingleItemPage extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-      image:'',
+      image: '',
       mainImages: [],
-      selected:{},
+      selected: {},
       hovering: false,
-      x:0,
-      y:0,
-      sX:0,
-      sY:0,
-      id:0
-    }
+      x: 0,
+      y: 0,
+      sX: 0,
+      sY: 0,
+      id: 0,
+    };
     this.onHoverAlt = this.onHoverAlt.bind(this);
     this.onHoverMain = this.onHoverMain.bind(this);
     this.onLeaveMain = this.onLeaveMain.bind(this);
     this.exit = this.exit.bind(this);
-
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getImages();
   }
 
@@ -38,63 +37,65 @@ class SingleItemPage extends React.Component{
       .then((data) => {
         this.setState({
           image: data.altImages[0],
-          mainImages: data.altImages
-          });
-        })
+          mainImages: data.altImages,
+        });
+      })
       .catch((err) => console.log(err));
   }
 
-  onHoverMain(e){
-    var modal = document.getElementById('modal-image');
-    var modalContainer = document.getElementById('modal-container');
+  onHoverMain(e) {
+    const modal = document.getElementById('modal-image');
+    const modalContainer = document.getElementById('modal-container');
     modalContainer.classList.remove(style.none);
-    var mags = document.getElementById(style.mags);
+    const mags = document.getElementById(style.mags);
     mags.classList.remove(style.none);
-    var valueX = -Math.abs(e.clientX)+350;
-    var valueY = -Math.abs(e.clientY)+150;
+    const valueX = -Math.abs(e.clientX) + 350;
+    const valueY = -Math.abs(e.clientY) + 150;
     e.persist(e.clientX);
     e.persist(e.clientY);
 
     requestAnimationFrame(() => {
       this.setState({
-        x:valueX,
-        y:valueY,
+        x: valueX,
+        y: valueY,
         sX: Math.abs(e.clientX),
-        sY: Math.abs(e.clientY)
+        sY: Math.abs(e.clientY),
       });
     });
-
   }
 
-  onLeaveMain(e){
+  onLeaveMain(e) {
     this.setState({
-      hovering: false
+      hovering: false,
     });
   }
-  exit(){
-    var modalContainer = document.getElementById('modal-container');
+
+  exit() {
+    const modalContainer = document.getElementById('modal-container');
     modalContainer.classList.add(style.none);
   }
-  onHoverAlt(e){
-    var index = e.target.getAttribute('value');
-    if(this.state.selected.classList){
+
+  onHoverAlt(e) {
+    const index = e.target.getAttribute('value');
+    if (this.state.selected.classList) {
       this.state.selected.classList.remove(style.selected);
     }
     e.target.classList.add(style.selected);
     this.setState({
       image: this.state.mainImages[index],
-      selected:e.target
+      selected: e.target,
     });
   }
-  render(){
-    return(
+
+  render() {
+    return (
       <div className={style.singleItemContainer}>
-        <AltImageContainer images = {this.state.mainImages} onHoverAlt = {this.onHoverAlt}/>
-        <MainImageContainer image={this.state.image} exit={this.exit}onHover={this.onHoverMain} onLeave={this.onLeaveMain}x={this.state.sX} y={this.state.sY}/>
-         <ModalContainer image={this.state.image} x={this.state.x} y={this.state.y}/>
+        <AltImageContainer images={this.state.mainImages} onHoverAlt={this.onHoverAlt} />
+        <MainImageContainer image={this.state.image} exit={this.exit} onHover={this.onHoverMain} onLeave={this.onLeaveMain} x={this.state.sX} y={this.state.sY} />
+        <ModalContainer image={this.state.image} x={this.state.x} y={this.state.y} />
       </div>
-    )
+    );
   }
 }
 
-ReactDOM.render(<SingleItemPage/>,document.getElementById('singleItemPage'));
+ReactDOM.render(<SingleItemPage />, document.getElementById('singleItemPage'));

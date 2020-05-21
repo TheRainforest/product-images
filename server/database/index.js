@@ -8,7 +8,7 @@ const { Schema } = mongoose;
 const uri = 'mongodb://localhost:27017/singleItemPage?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false';
 mongoose.connect(uri, { useNewUrlParser: true });
 
-const connection = mongoose.connection;
+const { connection } = mongoose;
 connection.on('err', console.error.bind(console, 'connection error:'));
 connection.once('open', () => console.log('Database connected...'));
 

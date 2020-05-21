@@ -26,7 +26,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   db.deleteItem(req.params.id)
-    .then(() => res.status(200).json({ message: 'Item successfully deleted' }))
+    .then((rows) => res.status(200).json(rows))
     .catch((err) => res.status(400).json({ message: `Error: ${err}` }));
 });
 

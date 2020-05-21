@@ -3,7 +3,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable linebreak-style */
 const request = require('supertest');
-const app = require('../app');
+const app = require('../index');
 
 describe('Test api/items/:id endpoint', () => {
   test('It should respond with 200 with correct id', async (done) => {

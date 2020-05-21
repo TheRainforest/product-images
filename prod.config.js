@@ -2,14 +2,13 @@
 /* eslint-disable linebreak-style */
 const path = require('path');
 
-
 module.exports = {
-  mode: "development",
-  entry: "./client/singleItemPage.jsx",
+  mode: 'development',
+  entry: './client/singleItemPage.jsx',
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: "/public/",
+    publicPath: '/public/',
   },
   module: {
     rules: [
@@ -38,4 +37,4 @@ module.exports = {
       }
     ]
   }
-}
+};
