@@ -3,18 +3,8 @@ import ReactDOM from 'react-dom';
 import AltImageContainer from './components/altImageContainer.jsx';
 import MainImageContainer from './components/mainImageContainer.jsx';
 import ModalContainer from './components/modalContainer.jsx';
-import $ from 'jquery';
 import style from './css/style.css';
 
-
-var get = function(id,success){
-  $.ajax({
-    url:`/api/items/${id}`,
-    type:'GET',
-    success:success,
-    error:function(e){console.log(e)}
-  });
-}
 class SingleItemPage extends React.Component{
   constructor(props){
     super(props);
@@ -35,17 +25,25 @@ class SingleItemPage extends React.Component{
     this.exit = this.exit.bind(this);
 
   }
+
   componentDidMount(){
+    this.getImages();
+  }
+
+  getImages() {
     const params = new URLSearchParams(document.location.search.substring(1));
     const id = params.get('id') || 1;
-
-    get(id, (data) => {
+    fetch(`/api/items/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
         this.setState({
-          image:data.altImages[0],
-          mainImages:data.altImages
-        });
-    })
+          image: data.altImages[0],
+          mainImages: data.altImages
+          });
+        })
+      .catch((err) => console.log(err));
   }
+
   onHoverMain(e){
     var modal = document.getElementById('modal-image');
     var modalContainer = document.getElementById('modal-container');
@@ -57,26 +55,26 @@ class SingleItemPage extends React.Component{
     e.persist(e.clientX);
     e.persist(e.clientY);
 
-      requestAnimationFrame(() => {
-        this.setState({
-          x:valueX,
-          y:valueY,
-          sX: Math.abs(e.clientX),
-          sY: Math.abs(e.clientY)
-        });
+    requestAnimationFrame(() => {
+      this.setState({
+        x:valueX,
+        y:valueY,
+        sX: Math.abs(e.clientX),
+        sY: Math.abs(e.clientY)
       });
+    });
 
   }
 
-onLeaveMain(e){
-  this.setState({
-    hovering: false
-  });
-}
-exit(){
-  var modalContainer = document.getElementById('modal-container');
-  modalContainer.classList.add(style.none);
-}
+  onLeaveMain(e){
+    this.setState({
+      hovering: false
+    });
+  }
+  exit(){
+    var modalContainer = document.getElementById('modal-container');
+    modalContainer.classList.add(style.none);
+  }
   onHoverAlt(e){
     var index = e.target.getAttribute('value');
     if(this.state.selected.classList){

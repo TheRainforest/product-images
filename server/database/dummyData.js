@@ -9,14 +9,14 @@ const run = function run() {
     } else {
       const obj = {
         altImages: arr,
-      }
+      };
       data.push(obj);
       arr = [];
       arr.push(`https://single-page-items.s3.us-east-2.amazonaws.com/img${i}.jpg`);
     }
   }
   arr = [];
-}
+};
 
 run();
 run();
