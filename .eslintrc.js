@@ -1,11 +1,36 @@
 /**
- * These rules enforce the Hack Reactor Style Guide
+ * These rules enforce the Airbnb Style Guide
  *
  * Visit this repo for more information:
- *   https://github.com/reactorcore/eslint-config-hackreactor
+ *   https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb
  */
 
 module.exports = {
-  extends: "airbnb-base"
-
+  env: {
+    browser: true,
+    es6: true,
+  },
+  extends: [
+    'airbnb',
+    'plugin:react/recommended',
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+  ],
+  rules: {
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
+    'no-console': 'off',
+    "linebreak-style": 0
+  }
 };
