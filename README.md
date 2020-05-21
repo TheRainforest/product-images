@@ -36,11 +36,11 @@ npm install -g webpack
 npm install
 ```
 
-## CRUD Operations
+## CRUD API
 
 | HTTP Verb |           Endpoint          |            Action             |
 |-----------| --------------------------- | ----------------------------- |
-| **POST**  |         /items/             |   CREATE a new item into DB   |
-| **GET**   |       /items/:id            |   READ item based on ID       |
-| **PUT**   |       /items/:id            |   UPDATE one image path       |
-| **DELETE**|       /items/:id            |   DELETE item based on ID     |
+| **POST**  |         /items/             |       CREATE new item         |
+| **GET**   |       /items/:id            |       READ item by ID         |
+| **PUT**   |       /items/:id            |  UPDATE an item's image by ID |
+| **DELETE**|       /items/:id            |      DELETE item by ID        |
