@@ -24,3 +24,9 @@ coverage
 build/
 dist/
 public/bundle.js
+
+#dotenv file
+.env
+
+#CSV file
+photo-images.csv
