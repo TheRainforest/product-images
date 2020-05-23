@@ -1,5 +1,3 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable linebreak-style */
 const path = require('path');
 
 module.exports = {
@@ -18,9 +16,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -31,10 +29,10 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-            }
-          }
-        ]
-      }
-    ]
-  }
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
