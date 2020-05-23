@@ -1,8 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-cond-assign */
-/* eslint-disable no-console */
-
 const db = require('./index');
 const data = require('./dummyData');
 
