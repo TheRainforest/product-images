@@ -46,7 +46,7 @@ describe('Test api/items/:id endpoint', () => {
       ];
       const response = await request(app).get('/api/items/98');
       mainImage.forEach((image) => {
-        expect(response.body.altImages).toContain(image);
+        expect(response.body.images).toContain(image);
       });
       done();
     });
