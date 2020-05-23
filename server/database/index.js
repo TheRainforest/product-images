@@ -1,6 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-console */
-/* eslint-disable func-names */
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
