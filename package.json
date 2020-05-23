@@ -8,7 +8,7 @@
   "scripts": {
     "build": "webpack --config prod.config.js -w",
     "start": "nodemon server/",
-    "seed": "node server/database/seed",
+    "seed": "node server/database/seeder",
     "test": "jest server/test/ --detectOpenHandles"
   },
   "dependencies": {
@@ -18,6 +18,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.9.10",
+    "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "style-loader": "^1.2.1",
