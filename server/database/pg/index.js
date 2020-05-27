@@ -2,10 +2,10 @@ const { Pool } = require('pg');
 const path = require('path');
 
 const pool = new Pool({
-  user: 'ericsong',
-  host: 'localhost',
-  database: 'productimages',
-  port: '5432',
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DB,
+  port: process.env.PORT,
 });
 
 const csvFile = path.join(__dirname, '../product-images.csv');
