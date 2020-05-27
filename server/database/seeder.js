@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 console.time('Time to generate data');
-const createItems = fs.createWriteStream('./photo-images.csv');
-createItems.write('id | images \n', 'utf8');
+const createItems = fs.createWriteStream('server/database/product-images.csv');
+createItems.write('id|images\n', 'utf8');
 
 function generateData(writer, encoding, callback) {
   let index = 10000000;
@@ -21,7 +21,7 @@ function generateData(writer, encoding, callback) {
       for (let i = 1; i <= 5; i += 1) {
         images.push(`https://rainforest-product-images.s3.us-east-2.amazonaws.com/img${imageStartNum + i}.jpg`);
       }
-      const data = `${id} | ${images} \n`;
+      const data = `${id}|{${images}}\n`;
 
       if (index === 0) {
         console.timeEnd('Time to generate data');
