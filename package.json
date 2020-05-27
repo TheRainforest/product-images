@@ -8,8 +8,10 @@
   "scripts": {
     "build": "webpack --config prod.config.js -w",
     "start": "nodemon server/",
-    "seed": "node server/database/seeder",
-    "test": "jest server/test/ --detectOpenHandles"
+    "seed": "node --max-old-space-size=8192 server/database/seeder",
+    "test": "jest server/test/ --detectOpenHandles",
+    "load-pg": "psql -d productimages -U ericsong -f server/database/pg/schema.sql",
+    "seed-pg": "node server/database/pg"
   },
   "dependencies": {
     "axios": "^0.19.2",
