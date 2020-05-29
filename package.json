@@ -11,10 +11,13 @@
     "seed": "node --max-old-space-size=8192 server/database/seeder",
     "test": "jest server/test/ --detectOpenHandles",
     "load-pg": "psql -d productimages -U ericsong -f server/database/pg/schema.sql",
-    "seed-pg": "node server/database/pg"
+    "load-cs": "node server/database/cassandra",
+    "seed-pg": "node server/database/pg",
+    "seed-cs": "cqlsh -k productimages -e \"COPY productimages.items (id, images) from 'server/database/product-images.csv' WITH DELIMITER = '|' AND HEADER = TRUE;\""
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "cassandra-driver": "^4.5.2",
     "css-loader": "^3.5.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
