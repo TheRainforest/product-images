@@ -2,7 +2,6 @@
   "name": "single-item-page",
   "version": "1.0.0",
   "description": "module for single item page",
-  "author": "Marcus Barnes",
   "license": "ISC",
   "main": "index.js",
   "scripts": {
@@ -13,7 +12,8 @@
     "load-pg": "psql -d productimages -U ericsong -f server/database/postgres/schema.sql",
     "load-cs": "node server/database/cassandra",
     "seed-pg": "node server/database/postgres/importCSV",
-    "seed-cs": "cqlsh -k productimages -e \"COPY productimages.items (id, images) from 'server/database/images.csv' WITH DELIMITER = '|' AND HEADER = TRUE;\""
+    "seed-cs": "cqlsh -k productimages -e \"COPY productimages.items (id, images) from 'server/database/images.csv' WITH DELIMITER = '|' AND HEADER = TRUE;\"",
+    "stress": "artillery run /Users/ericsong/Documents/HackReactor/SDC/product-images/server/stressTest/test.yml"
   },
   "dependencies": {
     "axios": "^0.19.2",
