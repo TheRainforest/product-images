@@ -9,7 +9,7 @@ const pool = new Pool({
   port: process.env.PG_PORT,
 });
 
-const csvFile = path.join(__dirname, '../product-images.csv');
+const csvFile = path.join(__dirname, '../images.csv');
 
 pool.connect()
   .then(() => pool.query(`COPY items FROM '${csvFile}' WITH DELIMITER '|' CSV HEADER`))

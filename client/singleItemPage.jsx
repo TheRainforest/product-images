@@ -9,8 +9,8 @@ class SingleItemPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: '',
-      mainImages: [],
+      mainImage: '',
+      images: [],
       selected: {},
       hovering: false,
       x: 0,
@@ -27,20 +27,6 @@ class SingleItemPage extends React.Component {
 
   componentDidMount() {
     this.getImages();
-  }
-
-  getImages() {
-    const params = new URLSearchParams(document.location.search.substring(1));
-    const id = params.get('id') || 1;
-    fetch(`/api/items/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({
-          image: data.altImages[0],
-          mainImages: data.altImages,
-        });
-      })
-      .catch((err) => console.log(err));
   }
 
   onHoverMain(e) {
@@ -70,11 +56,6 @@ class SingleItemPage extends React.Component {
     });
   }
 
-  exit() {
-    const modalContainer = document.getElementById('modal-container');
-    modalContainer.classList.add(style.none);
-  }
-
   onHoverAlt(e) {
     const index = e.target.getAttribute('value');
     if (this.state.selected.classList) {
@@ -82,17 +63,36 @@ class SingleItemPage extends React.Component {
     }
     e.target.classList.add(style.selected);
     this.setState({
-      image: this.state.mainImages[index],
+      mainImage: this.state.images[index],
       selected: e.target,
     });
+  }
+
+  getImages() {
+    const params = new URLSearchParams(document.location.search.substring(1));
+    const id = params.get('id') || 1;
+    fetch(`/api/items/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          mainImage: data.images[0],
+          images: data.images,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  exit() {
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.classList.add(style.none);
   }
 
   render() {
     return (
       <div className={style.singleItemContainer}>
-        <AltImageContainer images={this.state.mainImages} onHoverAlt={this.onHoverAlt} />
-        <MainImageContainer image={this.state.image} exit={this.exit} onHover={this.onHoverMain} onLeave={this.onLeaveMain} x={this.state.sX} y={this.state.sY} />
-        <ModalContainer image={this.state.image} x={this.state.x} y={this.state.y} />
+        <AltImageContainer images={this.state.images} onHoverAlt={this.onHoverAlt} />
+        <MainImageContainer image={this.state.mainImage} exit={this.exit} onHover={this.onHoverMain} onLeave={this.onLeaveMain} x={this.state.sX} y={this.state.sY} />
+        <ModalContainer image={this.state.mainImage} x={this.state.x} y={this.state.y} />
       </div>
     );
   }
