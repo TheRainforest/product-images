@@ -4,6 +4,6 @@ CREATE DATABASE productimages;
 \c productimages;
 
 CREATE TABLE items (
-  id SERIAL PRIMARY KEY,
+  itemId SERIAL PRIMARY KEY,
   images text[] NOT NULL
 );

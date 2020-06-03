@@ -1,4 +1,4 @@
-const db = require('./index');
+const db = require('./mongoDB');
 const data = require('./dummyData');
 
 // const clearTables = async function clearTables() {
