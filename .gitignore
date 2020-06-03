@@ -30,7 +30,3 @@ public/bundle.js
 
 #CSV file
 *.csv
-
-#New Relic
-newrelic.js
-newrelic_agent.log
