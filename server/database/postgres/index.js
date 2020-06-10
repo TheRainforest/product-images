@@ -16,8 +16,16 @@ const getItem = (id) => {
 };
 
 const createItem = (images) => {
-  const count = pool.query('SELECT COUNT(*) FROM items');
-  return pool.query(`INSERT INTO items VALUES (${count}, '{${images.join(',')}}')`);
+  const imagesString = JSON.stringify(images);
+  return pool.query('SELECT COUNT(*) FROM items')
+    .then((data) => {
+      const newIndex = Number(data.rows[0].count) + 1;
+      pool.query(`INSERT INTO items (itemId, images) VALUES (${newIndex}, ${imagesString})`);
+      return newIndex;
+    })
+    .then((newIndex) => {
+      return pool.query(`SELECT * FROM items WHERE itemId=${newIndex}`);
+    });
 };
 
 module.exports = { getItem, createItem };
