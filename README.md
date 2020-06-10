@@ -1,40 +1,22 @@
-# project-overnight/po-reviews
+# Rainforest: Product Images Service
 
-> This is the reviews module of Project Overnight.
+The product images module of Rainforest is responsible for dynamically rendering all images related to a product. It also allows the user to zoom into the image for more detailed viewing.
+
+![Product Images Demo](demo/demo.gif)
 
 ## Related Projects
 
-  - https://github.com/AmazonRainforest/details
-  - https://github.com/AmazonRainforest/related-products
-  - https://github.com/AmazonRainforest/reviews
+This proxy brings together the following modules:
+  - Product Images Module: https://github.com/AmazonRainforest/product-images
+  - Details Module: https://github.com/AmazonRainforest/details
+  - Related Products Module: https://github.com/AmazonRainforest/related-products
+  - Reviews Module: https://github.com/AmazonRainforest/reviews
 
-## Table of Contents
+## Technologies Used
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
+  - Frontend: React, HTML5, CSS3, jQuery
+  - Backend: Node.js, Express, PostgreSQL, Nginx
+  - Deployment: AWS (EC2)
 
 ## CRUD API
 
@@ -44,3 +26,30 @@ npm install
 | **GET**   |       /items/:id            |       READ item by ID         |
 | **PUT**   |       /items/:id            |  UPDATE an item's image by ID |
 | **DELETE**|       /items/:id            |      DELETE item by ID        |
+
+## Usage
+
+**Install dependencies**
+> npm install
+
+**Set up environment variables**
+- Make a copy of .env_sample and configure the environment variables as necessary.
+- Save as .env and ensure it is added to .gitignore.
+
+**Generate a CSV file containing a catalogue of 10 million products**
+> npm run csv
+
+**Connect to the database and load the schema**
+> npm run load-pg
+
+**Seed the database (using the CSV file generated above)**
+> npm run seed-pg
+
+**Build webpack bundle**
+> npm run build
+
+**Start up the server**
+> npm start
+
+## Style Guide
+This module follows [Airbnb style guide](https://github.com/airbnb/javascript)
