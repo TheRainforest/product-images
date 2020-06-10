@@ -17,7 +17,7 @@ router.get('/:id', (req, res, next) => {
       }
       res.status(200).json(data.rows[0]);
     })
-    .catch((err) => res.status(400).send('Error retrieving data'));
+    .catch((err) => res.status(400).send({ error: err.message }));
 });
 
 router.post('/', (req, res) => {
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
       }
       res.status(200).json(data.rows[0]);
     })
-    .catch((err) => res.status(500).send('Error posting data'));
+    .catch((err) => res.status(400).send({ error: err.message }));
 });
 
 module.exports = router;
