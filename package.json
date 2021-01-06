@@ -18,7 +18,7 @@
     "stress": "artillery run /Users/ericsong/Documents/HackReactor/SDC/product-images/server/stressTest/test.yml"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "cassandra-driver": "^4.5.2",
     "css-loader": "^3.5.3",
